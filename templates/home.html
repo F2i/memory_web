@@ -1,0 +1,68 @@
+<!-- templates/home.html -->
+
+{% extends 'base.html' %}
+
+
+{% block navigation %}
+{% for auth in backends.associated %}
+<nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand">Memory</a>
+        <form class="d-flex">
+            <a class="navbar-brand" href="#">
+                <span class="navbar-text">{{ auth.extra_data.name }}</span>
+            </a>
+            <a class="navbar-brand" href="#">
+                <img src="{{ auth.extra_data.picture.data.url }}" alt="" width="30" height="30"
+                    class="border border-1 d-inline-block align-text-top">
+            </a>
+            <button class="btn btn-danger"><a href="{% url 'logout' %}">Logout</a></button>
+        </form>
+    </div>
+</nav>
+
+<!-- As a heading -->
+{% endfor %}
+{% endblock %}
+
+
+{% block content %}
+<!-- Add from here -->
+
+
+{% if memories %}
+<div class="row">
+    <div class="d-grid gap-2 col-3 mx-auto">
+        <a href="{% url 'create' %}" class="btn btn-primary">Add new memory</a>
+    </div>
+    <div class="row">
+        <p></p>
+    </div>
+    <div class="row" style="max-height: 350px; overflow-y: scroll;">
+        {% for memory in memories %}
+        <div class="row">
+            <div class="card" style="width: 90rem;">
+                <!-- <img src="{{ memories.image_url }}" class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ memory.location }}</h5>
+                    <p class="card-text">{{ memory.comment }}</p>
+                    <p class="card-text">{{ memory.created_at }} </p>
+                    <p class="card-text">{{ memory.latitude }}, {{ memory.longtitude }}</p>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">You've not created any memories</h5>
+        <p class="card-text"></p>
+        <a href="{% url 'create' %}" class="btn btn-primary">Create</a>
+    </div>
+</div>
+{% endif %}
+<!-- End here -->
+{% endblock %}

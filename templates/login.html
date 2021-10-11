@@ -1,0 +1,27 @@
+<!-- templates/login.html -->
+
+{% extends 'base.html' %}
+{% block title %} Sign in {% endblock %}
+{% block content %}
+<div class="col order-first">
+    <h1 class="text-white">Memory Creation</h1>
+    <h4 class="text-white">Store your memory at the place you've visited.</h4>
+</div>
+<div class="col order-last">
+    <div>
+        <h1 class="text-white text-center">Sign in</h1>
+        <div class="card p-5">
+
+            <div class="row">
+                <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+                    <button class="btn btn-primary mb-2">
+                        <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook
+                        </a>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

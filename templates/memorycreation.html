@@ -1,0 +1,67 @@
+<!-- templates/home.html -->
+
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="col">
+    <div class="col-md-11">
+        {{ map|safe }}
+    </div>
+</div>
+
+
+<div class="col">
+    <div class="col-md-11">
+        <form method="POST" action="" class="row g-3 needs-validation" novalidate>
+            {% csrf_token %}
+            <script type="text/javascript	">
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+  </script>
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label" style="color: white;">Place</label>
+                <input type="text" class="form-control" id="validationCustom03" placeholder="Add some place"
+                    name="location" required>
+                <div class="invalid-feedback">
+                    Please add place's name.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationTextarea" class="form-label" style="color: white;">Comment</label>
+                <textarea class="form-control" id="validationTextarea" placeholder="Add some comment" name="comment"
+                    required style="height: 125px;"></textarea>
+                <div class="invalid-feedback">
+                    Please add some comment.
+                </div>
+            </div>
+            
+            <input type="text" class="form-control" id="validationLat" value="" name="lat" hidden required>
+            <div class="invalid-feedback">
+                Please choose some place on map
+            </div>
+    
+            <input type="text" class="form-control" id="validationLng" value="" name="lng" hidden required>
+
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Add memory</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

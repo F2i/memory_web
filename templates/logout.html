@@ -1,0 +1,20 @@
+<!-- templates/home.html -->
+
+{% extends 'base.html' %}
+
+
+{% block navigation %}
+{% endblock %}
+
+
+{% block content %}
+  <!-- Add from here -->
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Thank you and see you later.</h5>
+        <p class="card-text"></p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Back to home</a>
+      </div>
+    </div>
+  <!-- End here -->
+{% endblock %}
