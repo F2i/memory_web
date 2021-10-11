@@ -9,26 +9,32 @@ class MemoryHubTest(TestCase):
         self.user_0 = User.objects.create(username='anh_ban_a', password='giang_hoa')
         self.user_1 = User.objects.create(username='giang_hoa', password='anh_ban_a')
         self.item = Memory(
-            location = 'Thanh pho Ho Chi Minh',
-            comment = 'Hom nay thanh pho bi phong toa nua roi, them bun bo ghe',
-            created_at = 'Oct. 8, 2021, 12:56 p.m.',
-            user = self.user_0
+            location='Thanh pho Ho Chi Minh',
+            comment='Hom nay thanh pho bi phong toa nua roi, them bun bo ghe',
+            created_at='Oct. 8, 2021, 12:56 p.m.',
+            latitude='10.69',
+            longtitude='69.96',
+            user=self.user_0
         )
         self.item.save()
         self.lst_expect.append(self.item)
         self.item = Memory(
-            location = 'Thanh pho Ho Chi Minh',
-            comment = 'Hom nay thanh pho bi phong toa nua roi, them bun bo ghe',
-            created_at = 'Oct. 8, 2021, 12:57 p.m.',
-            user = self.user_0
+            location='Thanh pho Ho Chi Minh',
+            comment='Hom nay thanh pho bi phong toa nua roi, them bun bo ghe',
+            created_at='Oct. 8, 2021, 12:57 p.m.',
+            latitude='69.96',
+            longtitude='10.69',
+            user=self.user_0
         )
         self.item.save()
         self.lst_expect.append(self.item)
         self.item = Memory(
-            location = 'Thanh pho Ho Chi Minh',
-            comment = 'Hom nay thanh pho bi phong toa nua roi, them bun bo ghe',
-            created_at = 'Oct. 8, 2021, 12:58 p.m.',
-            user = self.user_1)
+            location='Thanh pho Ho Chi Minh',
+            comment='Hom nay thanh pho bi phong toa nua roi, them bun bo ghe',
+            created_at='Oct. 8, 2021, 12:58 p.m.',
+            latitude='30.04',
+            longtitude='19.75',
+            user=self.user_1)
         self.item.save()
         self.lst_expect.append(self.item)
 
@@ -41,4 +47,4 @@ class MemoryHubTest(TestCase):
         self.lst_observed.append(self.record)
         self.record = Memory.objects.filter(user=self.user_1).get(pk=3)
         self.lst_observed.append(self.record)
-        self.assertEqual( self.lst_expect, self.lst_observed)
+        self.assertEqual(self.lst_expect, self.lst_observed)
