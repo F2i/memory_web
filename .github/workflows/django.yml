@@ -44,4 +44,3 @@ jobs:
         heroku_app_name: ${{secrets.HEROKU_APP_NAME}} 
         heroku_email: ${{secrets.EMAIL}}
         dontautocreate: true
-        use_git: true
