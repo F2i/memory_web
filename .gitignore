@@ -112,3 +112,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# wrong piplock usage from me
+Pipfile
+Pipfile.lock
