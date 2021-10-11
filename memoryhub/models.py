@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Memory(models.Model):
     location = models.CharField(max_length=255)
     comment = models.TextField()

@@ -6,7 +6,7 @@ from .models import Memory
 import folium
 from jinja2 import Template
 
-# Create your views here.
+
 class MyNewMarker(folium.ClickForMarker):
     _template = Template(u"""
         {% macro script(this, kwargs) %}
@@ -29,7 +29,6 @@ class MyNewMarker(folium.ClickForMarker):
             {{this._parent.get_name()}}.on('click', newMarker);
         {% endmacro %}
         """)  # noqa
-
 
 
 def login(request):
@@ -57,7 +56,6 @@ def create(request):
         map = map._repr_html_()
         # cai nay co the dung ModelForm class de tot hon
         return render(request, 'memorycreation.html', {'map': map})
-
 
     if request.method == 'POST':
         location, comment, lat, lng = request.POST.get(
