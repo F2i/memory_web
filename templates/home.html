@@ -64,11 +64,15 @@
     </div>
 </div>
 {% else %}
-<div class="card text-center">
-    <div class="card-body">
-        <h5 class="card-title">You've not created any memories</h5>
-        <p class="card-text"></p>
-        <a href="{% url 'create' %}" class="btn btn-primary">Create</a>
+<div class="col">
+    <div class="col-md-11">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">You've not created any memories</h5>
+                <p class="card-text"></p>
+                <a href="{% url 'create' %}" class="btn btn-primary">Create</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endif %}
