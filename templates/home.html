@@ -28,31 +28,39 @@
 
 {% block content %}
 <!-- Add from here -->
-
+<div class="col">
+    <div class="col-md-11">
+        {{ map|safe }}
+    </div>
+</div>
 
 {% if memories %}
-<div class="row">
-    <div class="d-grid gap-2 col-3 mx-auto">
-        <a href="{% url 'create' %}" class="btn btn-primary">Add new memory</a>
-    </div>
-    <div class="row">
-        <p></p>
-    </div>
-    <div class="row" style="max-height: 350px; overflow-y: scroll;">
-        {% for memory in memories %}
+<div class="col">
+    <div class="col-md-11">
         <div class="row">
-            <div class="card" style="width: 90rem;">
-                <!-- <img src="{{ memories.image_url }}" class="card-img-top" alt="..."> -->
-                <div class="card-body">
-                    <h5 class="card-title">{{ memory.location }}</h5>
-                    <p class="card-text">{{ memory.comment }}</p>
-                    <p class="card-text">{{ memory.created_at }} </p>
-                    <p class="card-text">{{ memory.latitude }}, {{ memory.longtitude }}</p>
+            <div class="d-grid gap-2 col-5 mx-auto">
+                <a href="{% url 'create' %}" class="btn btn-primary">Add new memory</a>
+            </div>
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row" style="max-height: 350px; overflow-y: scroll;">
+                {% for memory in memories %}
+                <div class="row">
+                    <div class="card" style="width: 90rem;">
+                        <!-- <img src="{{ memories.image_url }}" class="card-img-top" alt="..."> -->
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>[{{forloop.counter}}]</strong> {{ memory.location }}</h5>
+                            <p class="card-text">{{ memory.comment }}</p>
+                            <p class="card-text">{{ memory.created_at }} </p>
+                            <p class="card-text">{{ memory.latitude }}, {{ memory.longtitude }}</p>
+                        </div>
+                    </div>
                 </div>
+                <p></p>
+                {% endfor %}
             </div>
         </div>
-        <p></p>
-        {% endfor %}
     </div>
 </div>
 {% else %}

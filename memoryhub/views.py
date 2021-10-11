@@ -5,6 +5,8 @@ from django.contrib.auth import logout as LogOut
 from .models import Memory
 import folium
 from jinja2 import Template
+from folium.features import DivIcon
+from copy import deepcopy
 
 
 class MyNewMarker(folium.ClickForMarker):
@@ -31,6 +33,16 @@ class MyNewMarker(folium.ClickForMarker):
         """)  # noqa
 
 
+def NumberedDivIcon(number):
+    anchor = (4, 35)
+    if(number > 9):
+        anchor = (8.5, 35)
+    return DivIcon(
+            icon_size=(30, 30),
+            icon_anchor=anchor,
+            html="""<div style="font-size: 12pt" ><strong class="">{:d}</strong></div>""".format(number))
+
+
 def login(request):
     return render(request, 'login.html')
 
@@ -38,13 +50,18 @@ def login(request):
 @login_required
 def home(request):
     memories = Memory.objects.filter(user=request.user)
+    map = folium.Map(
+            location=[10.774592941159328, 106.69244265706874], zoom_start=15)
     if memories:
         memories = reversed(memories)
-
+        tmp = deepcopy(memories)
+        for index, memory in enumerate(tmp):
+            folium.Marker(location=[memory.latitude, memory.longtitude], icon=folium.Icon(icon="")).add_to(map)
+            folium.Marker(location=[memory.latitude, memory.longtitude], icon=NumberedDivIcon(index+1)).add_to(map)
     else:
         pass
-
-    return render(request, 'home.html', {'memories': memories})
+    map = map._repr_html_()
+    return render(request, 'home.html', {'memories': memories, 'map': map})
 
 
 @login_required
