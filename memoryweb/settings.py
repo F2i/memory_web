@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--bkt@!az_mdo-9qgj@4cc((k&ib#)hcc1k+2^mi$7dal^=$3eb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'memoryweb.urls'
@@ -164,3 +165,5 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
