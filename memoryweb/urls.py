@@ -25,5 +25,5 @@ urlpatterns = [
     path('social-auth/', include('social_django.urls', namespace="social")),
     path('', views.home, name="home"),
     path('create/', views.create, name='create'),
-    path('__debug__/', include(debug_toolbar.urls)),
+    # path('__debug__/', include(debug_toolbar.urls)),
 ]
