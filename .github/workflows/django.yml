@@ -38,10 +38,10 @@ jobs:
       run: |
         python manage.py test
     - name: Deploy django to heroku
-      uses: nyakaz73/heroku-django-deploy@v0.68 
+      uses: akhileshns/heroku-deploy@v3.12.12
       with: 
-        heroku_app_name : ${{ secrets.HEROKU_APP_NAME }}
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_email_address: ${{secrets.EMAIL}}
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: ${{secrets.HEROKU_APP_NAME}} 
+        heroku_email: ${{secrets.EMAIL}}
         dontautocreate: true
         use_git: true
